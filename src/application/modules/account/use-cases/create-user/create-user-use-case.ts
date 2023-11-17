@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../entities/user';
-import { AccountRepository } from '../repositories/account-repository';
+import { User } from '../../entities/user';
+import { AccountRepository } from '../../repositories/account-repository';
 
 interface CreateUserUseCaseRequest {
   email: string;

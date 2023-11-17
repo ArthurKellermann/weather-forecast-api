@@ -1,22 +1,44 @@
 import { Injectable } from '@nestjs/common';
 import { WeatherbitService } from '../../services/weather-bit/weatherbit.service';
-import { ByLatLonInterface } from './get-current-weather-interfaces';
+import {
+  ByCityNameInterface,
+  ByLatLonInterface,
+} from './get-current-weather-interfaces';
 
 @Injectable()
 export class GetCurrentWeatherUseCase {
   constructor(private readonly weatherbitService: WeatherbitService) {}
 
-  async execute(data: ByLatLonInterface): Promise<any> {
-    const { data: weatherData, status } =
+  async executeByLatLon({ lat, lon }: ByLatLonInterface): Promise<any> {
+    const { data, status } =
       await this.weatherbitService.getCurrentWeatherByLatLon({
-        lat: data.lat,
-        lon: data.lon,
+        lat,
+        lon,
       });
 
-    if (status) {
-      return weatherData;
+    if (!status) {
+      throw new Error('Bad request');
     }
 
-    return null;
+    return data;
+  }
+
+  async executeByCity({
+    city,
+    country,
+    state,
+  }: ByCityNameInterface): Promise<any> {
+    const { data, status } =
+      await this.weatherbitService.getCurrentWeatherByCityName({
+        city,
+        country,
+        state,
+      });
+
+    if (!status) {
+      throw new Error('Bad request');
+    }
+
+    return data;
   }
 }

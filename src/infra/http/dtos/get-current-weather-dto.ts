@@ -1,4 +1,7 @@
-export class GetCurrentWeatherLatLonDto {
-  lat: string;
-  lon: string;
+export class GetCurrentWeatherDto {
+  lat?: string;
+  lon?: string;
+  city?: string;
+  state?: string;
+  country?: string;
 }

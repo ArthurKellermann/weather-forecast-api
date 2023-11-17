@@ -9,11 +9,6 @@ export interface ByCityNameInterface {
   country?: string;
 }
 
-export interface ByPostalCodeInterface {
-  postal_code: string;
-  country?: string;
-}
-
 export interface ByCityIdInterface {
   city_id: string;
 }
