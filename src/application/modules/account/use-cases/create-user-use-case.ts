@@ -2,25 +2,25 @@ import { Injectable } from '@nestjs/common';
 import { User } from '../entities/user';
 import { AccountRepository } from '../repositories/account-repository';
 
-interface CreateUserServiceRequest {
+interface CreateUserUseCaseRequest {
   email: string;
   name: string;
   password: string;
 }
 
-interface CreateUserServiceResponse {
+interface CreateUserUseCaseResponse {
   user: User;
 }
 
 @Injectable()
-export class CreateUserService {
+export class CreateUserUseCase {
   constructor(private readonly accountRepository: AccountRepository) {}
 
   async execute({
     email,
     name,
     password,
-  }: CreateUserServiceRequest): Promise<CreateUserServiceResponse> {
+  }: CreateUserUseCaseRequest): Promise<CreateUserUseCaseResponse> {
     const user = new User({ email, name, password });
 
     await this.accountRepository.create(user);
