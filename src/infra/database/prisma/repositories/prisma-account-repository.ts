@@ -8,13 +8,27 @@ import { PrismaUserMapper } from '../mappers/prisma-user-mapper';
 export class PrismaAccountRepository implements AccountRepository {
   constructor(private prismaService: PrismaService) {}
 
-  async create(data: User): Promise<void> {
-    const raw = PrismaUserMapper.toPrisma(data);
+  async create(user: User): Promise<void> {
+    const data = PrismaUserMapper.toPrisma(user);
 
     await this.prismaService.user.create({
-      data: raw,
+      data,
     });
 
     return;
+  }
+
+  async findByEmail(email: string): Promise<User> {
+    const user = await this.prismaService.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) {
+      return null;
+    }
+
+    return PrismaUserMapper.toDomain(user);
   }
 }

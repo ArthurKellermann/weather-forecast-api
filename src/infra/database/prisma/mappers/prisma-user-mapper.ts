@@ -1,4 +1,5 @@
 import { User } from '@app/modules/account/entities/user';
+import { User as RawUser } from '@prisma/client';
 
 export class PrismaUserMapper {
   static toPrisma(user: User) {
@@ -7,7 +8,19 @@ export class PrismaUserMapper {
       name: user.name,
       email: user.email,
       password: user.password,
-      createdAt: user.created_at,
+      created_at: user.created_at,
     };
+  }
+
+  static toDomain(raw: RawUser): User {
+    return new User(
+      {
+        name: raw.name,
+        email: raw.email,
+        password: raw.password,
+        created_at: raw.created_at,
+      },
+      raw.id,
+    );
   }
 }

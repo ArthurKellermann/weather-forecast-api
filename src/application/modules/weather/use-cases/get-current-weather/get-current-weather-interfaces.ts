@@ -8,11 +8,3 @@ export interface ByCityNameInterface {
   state?: string;
   country?: string;
 }
-
-export interface ByCityIdInterface {
-  city_id: string;
-}
-
-export interface ByCityIdListInterface {
-  cities: string[];
-}
