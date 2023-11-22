@@ -2,7 +2,7 @@ import { BadRequestException, Controller, Get, Query } from '@nestjs/common';
 import { GetCurrentWeatherUseCase } from '@app/modules/weather/use-cases/get-current-weather/get-current-weather-use-case';
 import { GetCurrentWeatherDto } from '../dtos/get-current-weather-dto';
 
-@Controller('weather')
+@Controller('api/weather')
 export class WeatherController {
   constructor(
     private readonly getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
@@ -28,7 +28,7 @@ export class WeatherController {
 
       return weatherData;
     } else {
-      throw new BadRequestException('Parâmetros inválidos.');
+      throw new BadRequestException('Invalid params.');
     }
   }
 }
