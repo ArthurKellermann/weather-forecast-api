@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { WeatherbitService } from '../../services/weather-bit/weatherbit.service';
 import {
   ByCityNameInterface,
@@ -17,7 +17,7 @@ export class GetCurrentWeatherUseCase {
       });
 
     if (!status) {
-      throw new Error('Bad request');
+      throw new BadRequestException('Bad request');
     }
 
     return data;
