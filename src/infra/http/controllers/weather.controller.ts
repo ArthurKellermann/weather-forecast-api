@@ -1,8 +1,16 @@
-import { BadRequestException, Controller, Get, Query } from '@nestjs/common';
+import {
+  BadRequestException,
+  Controller,
+  Get,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { GetCurrentWeatherUseCase } from '@app/modules/weather/use-cases/get-current-weather/get-current-weather-use-case';
 import { GetCurrentWeatherDto } from '../dtos/get-current-weather-dto';
+import { JwtAuthGuard } from '@app/modules/account/auth/guards/jwt-auth.guard';
 
 @Controller('api/weather')
+@UseGuards(JwtAuthGuard)
 export class WeatherController {
   constructor(
     private readonly getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
