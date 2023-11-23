@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GetCurrentWeatherUseCase } from './get-current-weather-use-case';
 import { WeatherbitService } from '../../services/weather-bit/weatherbit.service';
-import { weatherData } from '@test/fixtures/weather-data';
+import { currentWeatherData } from '@test/fixtures/weather-data';
 import {
   ByCityNameInterface,
   ByLatLonInterface,
@@ -43,7 +43,7 @@ describe('GetCurrentWeatherUseCase', () => {
       };
       const mockWeatherData = {
         count: 1,
-        data: [weatherData],
+        data: [currentWeatherData],
       };
 
       jest
@@ -69,7 +69,7 @@ describe('GetCurrentWeatherUseCase', () => {
 
       const mockWeatherData = {
         count: 1,
-        data: [weatherData],
+        data: [currentWeatherData],
       };
 
       jest

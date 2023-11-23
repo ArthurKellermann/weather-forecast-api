@@ -1,4 +1,4 @@
-export const weatherData = {
+export const currentWeatherData = {
   count: 1,
   data: [
     {

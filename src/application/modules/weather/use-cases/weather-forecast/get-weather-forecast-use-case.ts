@@ -4,6 +4,7 @@ import {
   ByCityNameInterface,
   ByLatLonInterface,
 } from '../../interfaces/request-params-interface';
+import { WeatherForecaseMapper } from '../../mappers/weather-forecast-mapper';
 
 @Injectable()
 export class GetWeatherForecastUseCase {
@@ -39,6 +40,6 @@ export class GetWeatherForecastUseCase {
       throw new Error('Bad request');
     }
 
-    return data;
+    return WeatherForecaseMapper.mapWeatherData(data);
   }
 }
