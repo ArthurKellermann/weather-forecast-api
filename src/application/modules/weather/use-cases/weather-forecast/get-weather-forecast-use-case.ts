@@ -6,12 +6,12 @@ import {
 } from '../../interfaces/request-params-interface';
 
 @Injectable()
-export class GetCurrentWeatherUseCase {
+export class GetWeatherForecastUseCase {
   constructor(private readonly weatherbitService: WeatherbitService) {}
 
   async executeByLatLon({ lat, lon }: ByLatLonInterface): Promise<any> {
     const { data, status } =
-      await this.weatherbitService.getCurrentWeatherByLatLon({
+      await this.weatherbitService.getWeatherForecastByLatLon({
         lat,
         lon,
       });
@@ -29,7 +29,7 @@ export class GetCurrentWeatherUseCase {
     state,
   }: ByCityNameInterface): Promise<any> {
     const { data, status } =
-      await this.weatherbitService.getCurrentWeatherByCityName({
+      await this.weatherbitService.getWeatherForecastByCityName({
         city,
         country,
         state,

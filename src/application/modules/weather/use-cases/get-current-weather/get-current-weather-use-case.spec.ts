@@ -5,7 +5,7 @@ import { weatherData } from '@test/fixtures/weather-data';
 import {
   ByCityNameInterface,
   ByLatLonInterface,
-} from './get-current-weather-interfaces';
+} from '../../interfaces/request-params-interface';
 
 describe('GetCurrentWeatherUseCase', () => {
   let getCurrentWeatherUseCase: GetCurrentWeatherUseCase;
