@@ -1,16 +1,18 @@
-export class WeatherForecaseMapper {
+export class WeatherForecastMapper {
   static mapWeatherDataObject(weatherData: any) {
     return {
       max_temp: weatherData.max_temp,
-      min_tempo: weatherData.min_temp,
+      min_temp: weatherData.min_temp,
       app_max_temp: weatherData.app_max_temp,
-      app_min_tempo: weatherData.app_min_temp,
+      app_min_temp: weatherData.app_min_temp,
       wind_spd: weatherData.wind_spd,
       clouds: weatherData.clouds,
-      datetime: weatherData.valid_date,
+      valid_date: weatherData.valid_date,
       weather: {
-        description: weatherData.weather.description,
-        code: weatherData.weather.code,
+        description: weatherData.weather
+          ? weatherData.weather.description
+          : null,
+        code: weatherData.weather ? weatherData.weather.code : null,
       },
     };
   }
@@ -23,7 +25,7 @@ export class WeatherForecaseMapper {
     }
 
     return {
-      message: `Weather forecast for the next 16 days in ${weatherData.city_name}`,
+      message: 'Weather forecast for the next 16 days',
       city: weatherData.city_name,
       country: weatherData.country_code,
       data: mappedData,

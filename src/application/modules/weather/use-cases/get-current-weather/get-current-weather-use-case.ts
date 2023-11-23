@@ -1,15 +1,12 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { WeatherbitService } from '../../services/weather-bit/weatherbit.service';
-import {
-  ByCityNameInterface,
-  ByLatLonInterface,
-} from '../../interfaces/request-params-interface';
+import { ByCityNameDto, ByLatLonDto } from '../../dtos/get-weather-data-dto';
 
 @Injectable()
 export class GetCurrentWeatherUseCase {
   constructor(private readonly weatherbitService: WeatherbitService) {}
 
-  async executeByLatLon({ lat, lon }: ByLatLonInterface): Promise<any> {
+  async executeByLatLon({ lat, lon }: ByLatLonDto): Promise<any> {
     const { data, status } =
       await this.weatherbitService.getCurrentWeatherByLatLon({
         lat,
@@ -23,11 +20,7 @@ export class GetCurrentWeatherUseCase {
     return data;
   }
 
-  async executeByCity({
-    city,
-    country,
-    state,
-  }: ByCityNameInterface): Promise<any> {
+  async executeByCity({ city, country, state }: ByCityNameDto): Promise<any> {
     const { data, status } =
       await this.weatherbitService.getCurrentWeatherByCityName({
         city,

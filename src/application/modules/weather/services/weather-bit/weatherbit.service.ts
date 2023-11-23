@@ -1,9 +1,6 @@
 import { Injectable, HttpStatus } from '@nestjs/common';
 import { HttpService as HttpAxiosService } from '@nestjs/axios';
-import {
-  ByCityNameInterface,
-  ByLatLonInterface,
-} from '../../interfaces/request-params-interface';
+import { ByCityNameDto, ByLatLonDto } from '../../dtos/get-weather-data-dto';
 import { lastValueFrom } from 'rxjs';
 import { config } from './config';
 
@@ -19,7 +16,7 @@ export class WeatherbitService {
   async getCurrentWeatherByLatLon({
     lat,
     lon,
-  }: ByLatLonInterface): Promise<WeatherbitServiceResponse> {
+  }: ByLatLonDto): Promise<WeatherbitServiceResponse> {
     const url = `${config.current_weather_url}?lat=${lat}&lon=${lon}&key=${config.api_key}`;
 
     const response = await lastValueFrom(this.httpAxiosService.get(url));
@@ -34,7 +31,7 @@ export class WeatherbitService {
     city,
     country,
     state,
-  }: ByCityNameInterface): Promise<WeatherbitServiceResponse> {
+  }: ByCityNameDto): Promise<WeatherbitServiceResponse> {
     let url: string;
 
     if (country) {
@@ -55,7 +52,7 @@ export class WeatherbitService {
     };
   }
 
-  async getWeatherForecastByLatLon({ lat, lon }: ByLatLonInterface) {
+  async getWeatherForecastByLatLon({ lat, lon }: ByLatLonDto) {
     const url = `${config.weather_forecast_url}?lat=${lat}&lon=${lon}&key=${config.api_key}`;
 
     const response = await lastValueFrom(this.httpAxiosService.get(url));
@@ -70,7 +67,7 @@ export class WeatherbitService {
     city,
     country,
     state,
-  }: ByCityNameInterface): Promise<WeatherbitServiceResponse> {
+  }: ByCityNameDto): Promise<WeatherbitServiceResponse> {
     let url: string;
 
     if (country) {

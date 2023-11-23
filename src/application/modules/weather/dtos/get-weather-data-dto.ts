@@ -1,9 +1,9 @@
-export interface ByLatLonInterface {
+export interface ByLatLonDto {
   lat: string;
   lon: string;
 }
 
-export interface ByCityNameInterface {
+export interface ByCityNameDto {
   city: string;
   state?: string;
   country?: string;

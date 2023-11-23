@@ -1,11 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GetCurrentWeatherUseCase } from './get-current-weather-use-case';
 import { WeatherbitService } from '../../services/weather-bit/weatherbit.service';
-import { currentWeatherData } from '@test/fixtures/weather-data';
-import {
-  ByCityNameInterface,
-  ByLatLonInterface,
-} from '../../interfaces/request-params-interface';
+import { currentWeatherData } from '@test/fixtures/current-weather-data';
+import { ByCityNameDto, ByLatLonDto } from '../../dtos/get-weather-data-dto';
 
 describe('GetCurrentWeatherUseCase', () => {
   let getCurrentWeatherUseCase: GetCurrentWeatherUseCase;
@@ -31,13 +28,9 @@ describe('GetCurrentWeatherUseCase', () => {
     weatherbitService = module.get<WeatherbitService>(WeatherbitService);
   });
 
-  it('should be defined', () => {
-    expect(getCurrentWeatherUseCase).toBeDefined();
-  });
-
   describe('executeByCity', () => {
     it('should return current weather data by city name', async () => {
-      const mockCityInfo: ByCityNameInterface = {
+      const mockCityInfo: ByCityNameDto = {
         city: 'Raleigh',
         country: 'US',
       };
@@ -62,7 +55,7 @@ describe('GetCurrentWeatherUseCase', () => {
 
   describe('executeByLatLon', () => {
     it('should return current weather data by latitude and longitude', async () => {
-      const mockCityInfo: ByLatLonInterface = {
+      const mockCityInfo: ByLatLonDto = {
         lat: '35.7796',
         lon: '-78.6382',
       };
