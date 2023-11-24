@@ -19,9 +19,7 @@ export class WeatherController {
   ) {}
 
   @Get('/current')
-  async getCurrentWeather(
-    @Query() params: GetCurrentWeatherDto,
-  ): Promise<void> {
+  async getCurrentWeather(@Query() params: GetCurrentWeatherDto) {
     if (params.lat && params.lon) {
       const weatherData = await this.getCurrentWeatherUseCase.executeByLatLon({
         lat: params.lat,
@@ -43,9 +41,7 @@ export class WeatherController {
   }
 
   @Get('/forecast')
-  async getWeatherForecast(
-    @Query() params: GetCurrentWeatherDto,
-  ): Promise<void> {
+  async getWeatherForecast(@Query() params: GetCurrentWeatherDto) {
     if (params.lat && params.lon) {
       const weatherData = await this.getWeatherForecastUseCase.executeByLatLon({
         lat: params.lat,
