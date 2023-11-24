@@ -6,11 +6,14 @@ import { currentWeatherData } from './fixtures/current-weather-data';
 
 describe('WeatherController (e2e)', () => {
   let app: INestApplication;
+  let token: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
+
+    token = process.env.API_KEY;
 
     app = moduleFixture.createNestApplication();
     await app.init();
@@ -23,6 +26,7 @@ describe('WeatherController (e2e)', () => {
   it('should get current weather by latitude and longitude', () => {
     return request(app.getHttpServer())
       .get('/api/weather/current')
+      .auth(token, { type: 'bearer' })
       .query({ lat: 123, lon: 456 })
       .expect(200)
       .expect(currentWeatherData);
@@ -31,6 +35,7 @@ describe('WeatherController (e2e)', () => {
   it('should get current weather by city', () => {
     return request(app.getHttpServer())
       .get('/api/weather/current')
+      .auth(token, { type: 'bearer' })
       .query({ city: 'London', country: 'GB' })
       .expect(200)
       .expect(currentWeatherData);
