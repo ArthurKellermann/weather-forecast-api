@@ -1,10 +1,10 @@
 import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
-import { CreateUserUseCase } from '@app/modules/account/use-cases/create-user/create-user-use-case';
+import { CreateUserUseCase } from '@application/modules/account/use-cases/create-user/create-user-use-case';
 import { CreateUserDto } from '@infra/http/dtos/create-user-dto';
-import { User } from '@app/modules/account/entities/user';
+import { User } from '@application/modules/account/entities/user';
 
-import { AuthService } from '@app/modules/account/auth/services/auth.service';
-import { LocalAuthGuard } from '@app/modules/account/auth/guards/jwt-local.guard';
+import { AuthService } from '@application/modules/account/auth/services/auth.service';
+import { LocalAuthGuard } from '@application/modules/account/auth/guards/jwt-local.guard';
 
 @Controller('api/account')
 export class AccountController {

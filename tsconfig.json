@@ -20,10 +20,12 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@app/*": ["./src/application/*"],
-      "@helpers/*": ["./src/helpers/*"],
+      "@application/*": ["./src/application/*"],
+      "@helpers/*": ["./src/application/helpers/*"],
       "@infra/*": ["./src/infra/*"],
       "@test/*": ["./test/*"]
     }
+    
+    
   }
 }

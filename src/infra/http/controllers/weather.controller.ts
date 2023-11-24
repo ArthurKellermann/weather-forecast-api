@@ -5,10 +5,10 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { GetCurrentWeatherUseCase } from '@app/modules/weather/use-cases/get-current-weather/get-current-weather-use-case';
+import { GetCurrentWeatherUseCase } from '@application/modules/weather/use-cases/get-current-weather/get-current-weather-use-case';
 import { GetCurrentWeatherDto } from '../dtos/get-current-weather-dto';
-import { JwtAuthGuard } from '@app/modules/account/auth/guards/jwt-auth.guard';
-import { GetWeatherForecastUseCase } from '@app/modules/weather/use-cases/weather-forecast/get-weather-forecast-use-case';
+import { JwtAuthGuard } from '@application/modules/account/auth/guards/jwt-auth.guard';
+import { GetWeatherForecastUseCase } from '@application/modules/weather/use-cases/weather-forecast/get-weather-forecast-use-case';
 
 @Controller('api/weather')
 @UseGuards(JwtAuthGuard)

@@ -5,5 +5,15 @@
   "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "setupFiles": ["tsconfig-paths/register"],
+  "moduleNameMapper": {
+    "^@application/(.*)$": "<rootDir>/src/application/$1",
+    "^@helpers/(.*)$": "<rootDir>/src/application/helpers/$1",
+    "^@infra/(.*)$": "<rootDir>/src/infra/$1",
+    "^@test/(.*)$": "<rootDir>/test/$1"
   }
+  
+  
+
 }

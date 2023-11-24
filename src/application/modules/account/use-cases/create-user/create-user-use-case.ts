@@ -2,7 +2,7 @@ import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { User } from '../../entities/user';
 import { AccountRepository } from '../../repositories/account-repository';
 import { hashSync } from 'bcryptjs';
-import { messageHelper } from '@app/helpers/message-helper';
+import { messageHelper } from '@helpers/message-helper';
 
 interface CreateUserUseCaseRequest {
   email: string;

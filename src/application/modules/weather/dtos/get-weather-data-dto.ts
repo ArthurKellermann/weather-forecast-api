@@ -3,7 +3,7 @@ export interface ByLatLonDto {
   lon: string;
 }
 
-export interface ByCityNameDto {
+export interface ByCityDto {
   city: string;
   state?: string;
   country?: string;

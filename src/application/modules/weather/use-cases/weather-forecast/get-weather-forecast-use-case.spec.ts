@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GetWeatherForecastUseCase } from './get-weather-forecast-use-case';
 import { WeatherbitService } from '../../services/weather-bit/weatherbit.service';
-import { ByCityNameDto, ByLatLonDto } from '../../dtos/get-weather-data-dto';
+import { ByCityDto, ByLatLonDto } from '../../dtos/get-weather-data-dto';
 import { weatherForecastData } from '@test/fixtures/weather-forecast-data';
 
 describe('GetWeatherForecastUseCase', () => {
@@ -16,7 +16,7 @@ describe('GetWeatherForecastUseCase', () => {
           provide: WeatherbitService,
           useValue: {
             getWeatherForecastByLatLon: jest.fn(),
-            getWeatherForecastByCityName: jest.fn(),
+            getWeatherForecastByCity: jest.fn(),
           },
         },
       ],
@@ -28,15 +28,20 @@ describe('GetWeatherForecastUseCase', () => {
     weatherbitService = module.get<WeatherbitService>(WeatherbitService);
   });
 
+  it('should be defined', () => {
+    expect(getWeatherForecastUseCase).toBeDefined();
+    expect(weatherbitService).toBeDefined();
+  });
+
   describe('executeByCity', () => {
-    it('should return weather forecast data by city name', async () => {
-      const mockCityInfo: ByCityNameDto = {
+    it('should return weather forecast data by city', async () => {
+      const mockCityInfo: ByCityDto = {
         city: 'Raleigh',
         country: 'US',
       };
 
       jest
-        .spyOn(weatherbitService, 'getWeatherForecastByCityName')
+        .spyOn(weatherbitService, 'getWeatherForecastByCity')
         .mockResolvedValueOnce({
           status: true,
           data: weatherForecastData,

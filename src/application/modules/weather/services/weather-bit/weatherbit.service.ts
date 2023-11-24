@@ -1,6 +1,6 @@
 import { Injectable, HttpStatus } from '@nestjs/common';
 import { HttpService as HttpAxiosService } from '@nestjs/axios';
-import { ByCityNameDto, ByLatLonDto } from '../../dtos/get-weather-data-dto';
+import { ByCityDto, ByLatLonDto } from '../../dtos/get-weather-data-dto';
 import { lastValueFrom } from 'rxjs';
 import { config } from './config';
 
@@ -27,11 +27,11 @@ export class WeatherbitService {
     };
   }
 
-  async getCurrentWeatherByCityName({
+  async getCurrentWeatherByCity({
     city,
     country,
     state,
-  }: ByCityNameDto): Promise<WeatherbitServiceResponse> {
+  }: ByCityDto): Promise<WeatherbitServiceResponse> {
     let url: string;
 
     if (country) {
@@ -63,11 +63,11 @@ export class WeatherbitService {
     };
   }
 
-  async getWeatherForecastByCityName({
+  async getWeatherForecastByCity({
     city,
     country,
     state,
-  }: ByCityNameDto): Promise<WeatherbitServiceResponse> {
+  }: ByCityDto): Promise<WeatherbitServiceResponse> {
     let url: string;
 
     if (country) {

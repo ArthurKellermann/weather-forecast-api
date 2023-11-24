@@ -1,4 +1,4 @@
-import { Replace } from '@app/helpers/Replace';
+import { Replace } from '../../../helpers/Replace';
 import { randomUUID } from 'crypto';
 
 export interface UserProps {
