@@ -9,7 +9,7 @@ const config: Config = {
   collectCoverageFrom: ['**/*.(t|j)s'],
   coverageDirectory: '../coverage',
   testEnvironment: 'node',
-
+  rootDir: '.',
   moduleNameMapper: {
     '^@application/(.*)$': '<rootDir>/src/application/$1',
     '^@helpers/(.*)$': '<rootDir>/src/application/helpers/$1',
