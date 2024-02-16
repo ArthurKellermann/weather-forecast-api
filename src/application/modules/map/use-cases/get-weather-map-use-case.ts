@@ -7,7 +7,7 @@ export class GetWeatherMapUseCase {
   constructor(private readonly openWeatherMapService: OpenWeatherMapService) {}
 
   async executeByLatLon({ layer, lat, lon }: GetWeatherMapDto): Promise<any> {
-    const { data, status } =
+    const { url, status } =
       await this.openWeatherMapService.getWeatherMapByLatLon({
         layer,
         lat,
@@ -15,9 +15,9 @@ export class GetWeatherMapUseCase {
       });
 
     if (!status) {
-      throw new BadRequestException('Bad request');
+      throw new BadRequestException();
     }
 
-    return data;
+    return { url };
   }
 }

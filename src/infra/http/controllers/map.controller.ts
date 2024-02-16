@@ -9,7 +9,7 @@ export class MapController {
   constructor(private readonly getWeatherMapUseCase: GetWeatherMapUseCase) {}
 
   @Get('/')
-  async getCurrentWeather(@Query() { layer, lat, lon }: GetWeatherMapDto) {
+  async getWeatherMap(@Query() { layer, lat, lon }: GetWeatherMapDto) {
     const mapData = await this.getWeatherMapUseCase.executeByLatLon({
       layer,
       lat,
