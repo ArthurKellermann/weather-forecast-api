@@ -1,73 +1,86 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Weather Forecast API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This project utilizes NestJS, Prisma, and SQLite to provide weather forecast information. It includes routes for user account creation, authentication, and fetching current weather and weather forecasts.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## What I Learned
 
-## Description
+During the development of this project, I gained experience in:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
+- Implementing Clean Architecture principles to structure the project, ensuring separation of concerns and maintainability.
+- Setting up authentication in NestJS using middleware and guards to secure routes and endpoints.
+- Writing unit tests and end-to-end tests to ensure the reliability and correctness of the application.
+- Consuming external APIs to fetch weather map data and integrate it into the application.
+- 
 ## Installation
 
-```bash
-$ yarn install
-```
+## Setup
 
-## Running the app
+- Clone the repository;
+- Install dependencies (`npm install`);
+- Run database migrations (`npx prisma migrate dev`);
+- Copy `.env.example` file (`cp .env.example .env`);
+- Start the server: (`npm run start`).
 
-```bash
-# development
-$ yarn run start
+## API Routes
 
-# watch mode
-$ yarn run start:dev
+### User Account
 
-# production mode
-$ yarn run start:prod
-```
+- **Create Account**
+  - Method: `POST`
+  - Route: `/api/account`
+  - Request Body:
+    ```
+    {
+      "email": "example@example.com",
+      "name": "First Last",
+      "password": "password"
+    }
+    ```
+  - Description: Creates a new user account.
 
-## Test
+- **Authentication**
+  - Method: `POST`
+  - Route: `/api/account/auth`
+  - Description: Authenticates a user and returns an access token.
 
-```bash
-# unit tests
-$ yarn run test
+### Weather Maps
 
-# e2e tests
-$ yarn run test:e2e
+- **Get Weather Map**
+  - Method: `GET`
+  - Route: `/api/maps`
+  - Query Parameters:
+    - `layer`: Weather map layer
+    - `lat`: Latitude
+    - `lon`: Longitude
+  - Description: Retrieves weather map data for a specific location.
 
-# test coverage
-$ yarn run test:cov
-```
+### Weather Forecast
 
-## Support
+- **Get Current Weather**
+  - Method: `GET`
+  - Route: `/api/weather/current`
+  - Query Parameters:
+    - `lat`: Latitude
+    - `lon`: Longitude
+    - `city`: City name
+    - `country`: Country code (optional)
+    - `state`: State (optional)
+  - Description: Retrieves current weather data for a specific location.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- **Get Weather Forecast**
+  - Method: `GET`
+  - Route: `/api/weather/forecast`
+  - Query Parameters:
+    - `lat`: Latitude
+    - `lon`: Longitude
+    - `city`: City name
+    - `country`: Country code (optional)
+    - `state`: State (optional)
+  - Description: Retrieves weather forecast data for a specific location.
 
-## Stay in touch
+## Notes
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Ensure to authenticate with the JWT token obtained after creating a user account before accessing `/api/account` and `/api/account/auth` routes.
+- Authentication with JWT token is also required for accessing `/api/maps` and `/api/weather` routes.
+- Make sure to pass the correct parameters when calling weather data fetching routes.
+- This project uses Prisma as the ORM to interact with the SQLite database. Ensure to correctly configure the `.env` file with the database credentials.
