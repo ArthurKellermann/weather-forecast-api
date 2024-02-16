@@ -10,10 +10,8 @@ During the development of this project, I gained experience in:
 - Setting up authentication in NestJS using middleware and guards to secure routes and endpoints.
 - Writing unit tests and end-to-end tests to ensure the reliability and correctness of the application.
 - Consuming external APIs to fetch weather map data and integrate it into the application.
-- 
+  
 ## Installation
-
-## Setup
 
 - Clone the repository;
 - Install dependencies (`npm install`);
